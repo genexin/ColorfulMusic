@@ -80,8 +80,14 @@
 				document.getElementById("login").onclick = function () {
 					login(document.getElementById("username").value, document.getElementById("password").value);
 				};
-				document.onkeydown = function () {
-					if (event.keyCode === 13) { // 回车键
+				document.onkeydown = function (e) {
+					var keyCode = 0;
+					if (window.event) {
+						keyCode = event.keyCode;
+					} else if (e.which) {
+						keyCode = e.which;
+					}
+					if (keyCode === 13) { // 回车键
 						login(document.getElementById("username").value, document.getElementById("password").value);
 					}
 				};
