@@ -49,6 +49,7 @@
 				</tr>
 			</table>
 		</div>
+		<script type="text/javascript" src="<%=path%>/js/easy.js"></script>
 		<script>
 			function register(username, password, email) {
 				var ajaxRequest = new XMLHttpRequest();
@@ -67,10 +68,10 @@
 				ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // 设置头部
 				ajaxRequest.send(userInfo);
 			}
-			document.getElementById("register").onclick = function () {
-				register(document.getElementById("username").value, document.getElementById("password").value, document.getElementById("email").value);
+			e("register").onclick = function () {
+				register(e("username").value, e("password").value, e("email").value);
 			};
-			document.getElementById("email").focus();
+			e("email").focus();
 		</script>
     </body>
 </html>

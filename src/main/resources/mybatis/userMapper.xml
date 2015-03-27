@@ -18,7 +18,9 @@
 	</select>
 	
 	<select id="getUserId" resultType="Integer">
-		SELECT id FROM users WHERE username = #{0} AND password = #{1}
+		<![CDATA[
+			SELECT id FROM users WHERE username = #{0} AND password = #{1}
+		]]>
 	</select>
 		
 	<select id="getUserByNameAndPass" resultType="User" resultMap="userResultMap">
@@ -29,6 +31,14 @@
 	</select>
 	
 	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO users VALUES (null, #{username}, #{password}, #{email})
+		<![CDATA[
+			INSERT INTO users (id, username, password, email) VALUES (null, #{username}, #{password}, #{email})
+		]]>
+	</insert>
+	
+	<insert id="collectSong">
+		<![CDATA[
+			INSERT INTO users_songs (user_id, song_id) VALUES (#{0}, #{1})
+		]]>
 	</insert>
 </mapper>

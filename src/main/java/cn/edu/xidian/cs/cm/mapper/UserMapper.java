@@ -19,5 +19,7 @@ public interface UserMapper {
 	public User getUserByNameAndPass(String username, String password);
 	
 	public void updateUser(User user);
+	
+	public void collectSong(Integer userId, Integer songId);
 
 }

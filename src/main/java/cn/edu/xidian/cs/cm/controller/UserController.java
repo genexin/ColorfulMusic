@@ -59,9 +59,11 @@ public class UserController {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/collection")
-	public void collectSong(@RequestParam("userId") Integer userId, @RequestParam("songId") Integer songId) {
+	@RequestMapping(method = RequestMethod.PUT, value = "/collection/{userId}/{songId}")
+	public ResponseEntity<Void> collectSong(@PathVariable("userId") Integer userId, @PathVariable("songId") Integer songId) {
+		userMapper.collectSong(userId, songId);
 		System.out.println(userId + " --> " + songId);
+		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 
 }

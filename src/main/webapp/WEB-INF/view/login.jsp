@@ -53,11 +53,12 @@
 					</tr>
 				</table>
 			</div>
+			<script type="text/javascript" src="<%=path%>/js/easy.js"></script>
 			<script>
 				function register() {
 					window.location.href = "<%=path%>/user/register";
 				}
-				document.getElementById("register").onclick = function () {
+				e("register").onclick = function () {
 					register();
 				};
 				function login(username, password) {
@@ -77,8 +78,8 @@
 					ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // 设置头部
 					ajaxRequest.send(null);
 				}
-				document.getElementById("login").onclick = function () {
-					login(document.getElementById("username").value, document.getElementById("password").value);
+				e("login").onclick = function () {
+					login(e("username").value, e("password").value);
 				};
 				document.onkeydown = function (e) {
 					var keyCode = 0;
@@ -88,10 +89,10 @@
 						keyCode = e.which;
 					}
 					if (keyCode === 13) { // 回车键
-						login(document.getElementById("username").value, document.getElementById("password").value);
+						login(e("username").value, e("password").value);
 					}
 				};
-				document.getElementById("username").focus();
+				e("username").focus();
 			</script>
 		</body>
 	</html>
