@@ -14,7 +14,7 @@
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 			<link rel="shortcut icon" href="<%=path%>/images/icon.png" >
-			<title>多彩音乐</title>
+			<title>用户登录</title>
 			<style>
 				body{
 					background-color: #60B18D;

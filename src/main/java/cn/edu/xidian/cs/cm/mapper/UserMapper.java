@@ -10,7 +10,7 @@ public interface UserMapper {
 
 	public void addUser(User user);
 	
-	public void delUser(Integer id);
+	public void delUserById(Integer id);
 
 	public User getUserById(Integer id);
 

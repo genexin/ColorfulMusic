@@ -4,9 +4,11 @@ import cn.edu.xidian.cs.cm.entity.User;
 import cn.edu.xidian.cs.cm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +29,7 @@ public class UserController {
 		return "/register";
 	}
 
-	@RequestMapping("/user_register")
+	@RequestMapping(method = RequestMethod.POST, value = "/user_register")
 	public ResponseEntity<User> register(
 			@RequestParam("email") String email,
 			@RequestParam("username") String username,
@@ -43,7 +45,9 @@ public class UserController {
 	}
 
 	@RequestMapping("/user_login")
-	public ResponseEntity<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+	public ResponseEntity<User> login(
+			@RequestParam("username") String username, 
+			@RequestParam("password") String password) {
 		return getUserResponseEntity(userMapper.getUserByNameAndPass(username, password));
 	}
 
@@ -59,10 +63,25 @@ public class UserController {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<User> delUser(@PathVariable("id") Integer id) {
+		User user = userMapper.getUserById(id);
+		if (user != null) {
+			userMapper.delUserById(id);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+		userMapper.updateUser(user);
+		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.PUT, value = "/collection/{userId}/{songId}")
 	public ResponseEntity<Void> collectSong(@PathVariable("userId") Integer userId, @PathVariable("songId") Integer songId) {
 		userMapper.collectSong(userId, songId);
-		System.out.println(userId + " --> " + songId);
 		return new ResponseEntity<>(null, HttpStatus.OK);
 	}
 

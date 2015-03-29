@@ -21,7 +21,7 @@ CREATE TABLE `albums`(
 	album_name VARCHAR(30) NOT NULL,
 	singer_id INT,
 	PRIMARY KEY (album_id),
-	CONSTRAINT `albums_singers_singer_id_fk` FOREIGN KEY (`singer_id`) REFERENCES `singers` (`singer_id`)
+	CONSTRAINT `albums_singers_singer_id_fk` FOREIGN KEY (`singer_id`) REFERENCES `singers` (`singer_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `songs`(
@@ -37,14 +37,14 @@ CREATE TABLE `songs`(
 	singer_id INT,
 	album_id INT,
 	PRIMARY KEY (song_id),
-	CONSTRAINT `songs_singers_singer_id_fk` FOREIGN KEY (`singer_id`) REFERENCES `singers` (`singer_id`),
-	CONSTRAINT `songs_albums_album_id_fk` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`)
+	CONSTRAINT `songs_singers_singer_id_fk` FOREIGN KEY (`singer_id`) REFERENCES `singers` (`singer_id`) ON DELETE CASCADE,
+	CONSTRAINT `songs_albums_album_id_fk` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE `users_songs`(
 	user_id INT NOT NULL,
 	song_id INT NOT NULL,
 	PRIMARY KEY (user_id, song_id),
-	CONSTRAINT `us_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-	CONSTRAINT `us_songs_song_id_fk` FOREIGN KEY (`song_id`) REFERENCES `songs` (`song_id`)
+	CONSTRAINT `us_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+	CONSTRAINT `us_songs_song_id_fk` FOREIGN KEY (`song_id`) REFERENCES `songs` (`song_id`) ON DELETE CASCADE
 )ENGINE=InnoDB;

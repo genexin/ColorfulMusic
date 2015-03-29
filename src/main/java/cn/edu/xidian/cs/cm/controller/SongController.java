@@ -27,7 +27,6 @@ public class SongController {
 		if (songs != null){
 			return new ResponseEntity<>(songs, HttpStatus.OK);
 		}
-		System.out.println("Songs is null");
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 

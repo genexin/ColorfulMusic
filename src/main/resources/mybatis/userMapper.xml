@@ -36,6 +36,18 @@
 		]]>
 	</insert>
 	
+	<delete id="delUserById" parameterType="Integer">
+		<![CDATA[
+			DELETE FROM users WHERE id = #{id}
+		]]>
+	</delete>
+	
+	<update id="updateUser" parameterType="User">
+		<![CDATA[
+			UPDATE users SET username=#{username}, password=#{password}, email=#{email} WHERE id=#{id}
+		]]>
+	</update>
+	
 	<insert id="collectSong">
 		<![CDATA[
 			INSERT INTO users_songs (user_id, song_id) VALUES (#{0}, #{1})

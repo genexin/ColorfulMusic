@@ -55,7 +55,9 @@
 			<div id="option">
 				<input type="button" id="login" value="登录" />&nbsp;&nbsp;
 				<input type="button" id="register" value="注册">&nbsp;&nbsp;
-				<input type="button" id="collect" value="收藏">
+				<input type="button" id="collect" value="收藏">&nbsp;&nbsp;
+				<input type="button" id="update" value="更新用户">&nbsp;&nbsp;
+				<input type="button" id="delete" value="删除用户">
 			</div>
 			<div id="disable_background"></div>
 			<div id="input_dialog">
@@ -81,17 +83,26 @@
 			</div>
 			<script type="text/javascript" src="<%=path%>/js/easy.js"></script>
 			<script>
+				function User(id, username, password, email) {
+					this.id = id;
+					this.username = username;
+					this.password = password;
+					this.email = email;
+				}
+				e("update").onclick = function () {
+					var user = new User(1, "MiZhou", "zm2015", "1069200225@qq.com");
+					updateUser(user);
+				};
+				e("delete").onclick = function () {
+					var id = window.prompt("输入要删除用户的 ID", "id");
+					delUserById(id);
+				};
 				e("login").onclick = function () {
 					window.location.href = "<%=path%>/user/login";
 				};
 				e("register").onclick = function () {
 					window.location.href = "<%=path%>/user/register";
 				};
-				function showInputDialog() {
-					e("input_dialog").style.display = 'block';
-					e("disable_background").style.display = 'block';
-					e("user_id").focus();
-				}
 				e("input_dialog_ok").onclick = function () {
 					e("input_dialog").style.display = 'none';
 					e("disable_background").style.display = 'none';
@@ -101,6 +112,46 @@
 					e("input_dialog").style.display = 'none';
 					e("disable_background").style.display = 'none';
 				};
+				e("collect").onclick = function () {
+					showInputDialog();
+				};
+				function updateUser(user) {
+					var ajaxRequest = new XMLHttpRequest();
+					ajaxRequest.onreadystatechange = function () {
+						if (ajaxRequest.readyState === 4) {
+							if (ajaxRequest.status === 200) {
+								alert(ajaxRequest.responseText);
+							} else {
+								alert("更新用户失败");
+							}
+						}
+					};
+					var url = "<%=path%>/user";
+					ajaxRequest.open('PUT', url, true);
+					ajaxRequest.setRequestHeader("Content-Type", "application/json");
+					ajaxRequest.send(JSON.stringify(user));
+				}
+
+				function delUserById(id) {
+					var ajaxRequest = new XMLHttpRequest();
+					ajaxRequest.onreadystatechange = function () {
+						if (ajaxRequest.readyState === 4) {
+							if (ajaxRequest.status === 200) {
+								alert(ajaxRequest.responseText);
+							} else {
+								alert("删除用户失败");
+							}
+						}
+					};
+					var url = "<%=path%>/user/" + id;
+					ajaxRequest.open('DELETE', url, true);
+					ajaxRequest.send(null);
+				}
+				function showInputDialog() {
+					e("input_dialog").style.display = 'block';
+					e("disable_background").style.display = 'block';
+					e("user_id").focus();
+				}
 				function collect(userId, songId) {
 					var ajaxRequest = new XMLHttpRequest();
 					ajaxRequest.onreadystatechange = function () {
@@ -116,9 +167,6 @@
 					ajaxRequest.open('PUT', url, true);
 					ajaxRequest.send(null);
 				}
-				e("collect").onclick = function () {
-					showInputDialog();
-				};
 			</script>
 		</body>
 	</html>

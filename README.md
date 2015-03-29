@@ -39,7 +39,7 @@ function login(username, password) {
 	url += "&username=" + username + "&password=" + password;
 	ajaxRequest.open('GET', url, true); // true 表示异步调用
 	ajaxRequest.setRequestHeader("Content-Type", 
-	           "application/x-www-form-urlencoded"); // 设置头部
+	                   "application/x-www-form-urlencoded"); // 设置头部
 	ajaxRequest.send(null);
 }
 ```
@@ -59,11 +59,9 @@ function register(username, password, email) {
     };
     var userInfo = "email=" + email + 
             "&username=" + username + "&password=" + password;
-    var url = "<%=path%>/user/user_register?dummy="
-                                        + new Date().getTime();
+    var url = "<%=path%>/user/user_register?dummy="+ new Date().getTime();
     ajaxRequest.open('POST', url, true);
-    ajaxRequest.setRequestHeader("Content-Type", 
-                "application/x-www-form-urlencoded");
+    ajaxRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     ajaxRequest.send(userInfo);
 }
 ```
