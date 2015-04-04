@@ -7,13 +7,14 @@
 		<result property="username" column="username" />
 		<result property="password" column="password" />
 		<result property="email" column="email" />
+		<!--
 		<collection property="songs" javaType="ArrayList" ofType="Song" resultMap="cn.edu.xidian.cs.cm.mapper.SongMapper.songResultMap" />
+		-->
 	</resultMap>
 	
 	<select id="getUserById" parameterType="Integer" resultType="User" resultMap="userResultMap">
 		<![CDATA[
-			SELECT users.* , songs.* FROM users, songs WHERE users.id = #{id}
-			AND song_id IN (SELECT us.song_id FROM users_songs us WHERE us.user_id = #{id})
+			SELECT users.* FROM users WHERE users.id = #{id}
 		]]>
 	</select>
 	
@@ -23,13 +24,6 @@
 		]]>
 	</select>
 		
-	<select id="getUserByNameAndPass" resultType="User" resultMap="userResultMap">
-		<![CDATA[
-			SELECT users.* , songs.* FROM users, songs WHERE users.username = #{0} AND users.password = #{1}
-			AND song_id IN (SELECT us.song_id FROM users_songs us WHERE us.user_id = users.id)
-		]]>
-	</select>
-	
 	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
 		<![CDATA[
 			INSERT INTO users (id, username, password, email) VALUES (null, #{username}, #{password}, #{email})
@@ -53,4 +47,10 @@
 			INSERT INTO users_songs (user_id, song_id) VALUES (#{0}, #{1})
 		]]>
 	</insert>
+	
+	<select id="getUserSongs" resultType="Song" parameterType="Integer" resultMap="cn.edu.xidian.cs.cm.mapper.SongMapper.songResultMap">
+		<![CDATA[
+			SELECT * FROM songs WHERE songs.song_id IN (SELECT us.song_id FROM users_songs us WHERE us.user_id = #{id})
+		]]>
+	</select>
 </mapper>

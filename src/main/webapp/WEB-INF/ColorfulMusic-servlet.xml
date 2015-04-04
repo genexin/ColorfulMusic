@@ -17,7 +17,7 @@
 	<mvc:resources mapping="/images/**" location="/WEB-INF/resources/images/"/>
 	<mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/"/>
 	<mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/"/>
-	<mvc:resources mapping="/xml/**" location="/WEB-INF/resources/xml/"/>
+	<mvc:resources mapping="/songs/**" location="/WEB-INF/resources/songs/"/>
 	
 	<context:component-scan base-package="cn.edu.xidian.cs.cm.controller" />
 	

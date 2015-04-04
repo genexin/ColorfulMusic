@@ -1,7 +1,9 @@
 package cn.edu.xidian.cs.cm.controller;
 
+import cn.edu.xidian.cs.cm.entity.Song;
 import cn.edu.xidian.cs.cm.entity.User;
 import cn.edu.xidian.cs.cm.mapper.UserMapper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,18 +47,19 @@ public class UserController {
 	}
 
 	@RequestMapping("/user_login")
-	public ResponseEntity<User> login(
-			@RequestParam("username") String username, 
+	public ResponseEntity<Integer> login(
+			@RequestParam("username") String username,
 			@RequestParam("password") String password) {
-		return getUserResponseEntity(userMapper.getUserByNameAndPass(username, password));
+		Integer id = userMapper.getUserId(username, password);
+		if (id != null) {
+			return new ResponseEntity<>(id, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
 	@RequestMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable("id") Integer id) {
-		return getUserResponseEntity(userMapper.getUserById(id));
-	}
-
-	private ResponseEntity<User> getUserResponseEntity(User user) {
+		User user = userMapper.getUserById(id);
 		if (user != null) {
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
@@ -72,11 +75,20 @@ public class UserController {
 		}
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		userMapper.updateUser(user);
 		return new ResponseEntity<>(user, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{userId}/collection")
+	public ResponseEntity<List<Song>> getUserSongs(@PathVariable("userId") Integer userId) {
+		List<Song> userSongs = userMapper.getUserSongs(userId);
+		if (userSongs == null || userSongs.isEmpty()) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(userSongs, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/collection/{userId}/{songId}")

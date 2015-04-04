@@ -1,12 +1,13 @@
 package cn.edu.xidian.cs.cm.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
  * @author MiZhou
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 2015_03L;
@@ -15,7 +16,6 @@ public class User implements Serializable {
 	private String username;
 	private String password;
 	private String email;
-	private List<Song> songs;
 
 	public User() {
 	}
@@ -56,14 +56,6 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public List<Song> getSongs() {
-		return songs;
-	}
-
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
 	}
 
 	@Override

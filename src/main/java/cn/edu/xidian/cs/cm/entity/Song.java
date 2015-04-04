@@ -16,7 +16,7 @@ public class Song implements Serializable {
 	private Integer id;
 
 	private String title;
-	private String syear;
+	private String year;
 	private String comment;
 
 	private int duration;
@@ -25,10 +25,6 @@ public class Song implements Serializable {
 
 	private Integer albumId;
 	private Integer singerId;
-//	@JsonSerialize(using = SingerSerializer.class)
-//	private Singer singer;
-//	@JsonSerialize(using = AlbumSerializer.class)
-//	private Album album;
 
 	public Integer getId() {
 		return id;
@@ -46,12 +42,12 @@ public class Song implements Serializable {
 		this.title = title;
 	}
 
-	public String getSyear() {
-		return syear;
+	public String getYear() {
+		return year;
 	}
 
-	public void setSyear(String syear) {
-		this.syear = syear;
+	public void setYear(String year) {
+		this.year = year;
 	}
 
 	public String getComment() {

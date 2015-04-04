@@ -5,16 +5,17 @@
 	<resultMap type="Song" id="songResultMap">
 		<id property="id" column="song_id" />
 		<result property="title" column="song_title" />
+		<result property="year" column="song_year" />
 		<result property="url" column="song_url" />
 		<result property="emotion" column="emotion" />
 		<result property="singerId" column="singer_id" />
 		<result property="albumId" column="album_id" />
 	</resultMap>
 	<select id="getSong" parameterType="Integer" resultType="Song" resultMap="songResultMap">
-		<![CDATA[ SELECT song_id, song_title, song_url, emotion, singer_id, album_id FROM songs WHERE song_id=#{id} ]]>
+		<![CDATA[ SELECT song_id, song_title, song_year, song_url, emotion, singer_id, album_id FROM songs WHERE song_id=#{id} ]]>
 	</select>
 	
 	<select id="getSongs" resultType="Song" resultMap="songResultMap">
-		<![CDATA[ SELECT song_id, song_title, song_url, emotion, singer_id, album_id FROM songs LIMIT #{0},#{1} ]]>
+		<![CDATA[ SELECT song_id, song_title, song_year, song_url, emotion, singer_id, album_id FROM songs LIMIT #{0},#{1} ]]>
 	</select>
 </mapper>

@@ -6,21 +6,22 @@
 <br/>FLUSH PRIVILEGES;
 2. 导入数据库：
 <br/>SOURCE db.sql
-3. 然后自行插入一些数据
+3. 然后自行插入一些数据（比较麻烦，建议队友们写个小程序）
 <br/>
 
 #### 目前提供的基本 API
 *基础路径： http://localhost:8080/ColorfulMusic，数据格式为 JSON*
 
 * 获得歌曲；方法：GET；<br/>
-Example：<br/>
-1\. 获得 id 为 1 的歌曲：http://localhost:8080/ColorfulMusic/song/1<br/>
-2\. 获得 id 1 之后的 3 首歌曲（id 分别为 2,3,4）：http://localhost:8080/ColorfulMusic/song/1/3
+Example：
+    1. 获得 id 为 1 的歌曲：http://localhost:8080/ColorfulMusic/song/1<br/>
+    2. 获得 id 1 之后的 3 首歌曲（id 分别为 2,3,4）：http://localhost:8080/ColorfulMusic/song/1/3
 * 获得用户信息；方法：GET<br/>
-Example：<br/>
-1\. 获得 id 为 1 的用户：http://localhost:8080/ColorfulMusic/user/1
+Example：
+    1. 获得 id 为 1 的用户的信息：http://localhost:8080/ColorfulMusic/user/1
+    2. 获得 id 为 1 的用户收藏的歌曲：http://localhost:8080/ColorfulMusic/user/1/collection
 
-* 用户登录；方法：GET；路径：/user/user_login；参数：username，password；Content-Type：application/x-www-form-urlencoded；登录成功返回Http状态码200和对应的用户信息，否则返回状态码404<br/>
+* 用户登录；方法：GET；路径：/user/user_login；参数：username，password；Content-Type：application/x-www-form-urlencoded；登录成功返回Http状态码200和对应的用户 ID，否则返回状态码404<br/>
 Example:<br/>
 ```JavaScript
 function login(username, password) {
