@@ -11,11 +11,11 @@ public interface SongMapper {
 
 	public void addSong(Song song);
 
-	public void delSong(Integer id);
+	public void delSongById(Integer id);
 
 	public void updateSong(Song song);
 
-	public Song getSong(Integer id);
+	public Song getSongById(Integer id);
 
 	public List<Song> getSongs(int offset, int num);
 }

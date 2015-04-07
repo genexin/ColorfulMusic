@@ -11,13 +11,18 @@
 		<result property="comment" column="song_comment" />
 		<result property="duration" column="duration" />
 		<result property="emotion" column="emotion" />
-		<result property="singerId" column="singer_id" />
+		<association property="singer" column="singer_id" select="cn.edu.xidian.cs.cm.mapper.SingerMapper.getSingerById" />
 	</resultMap>
-	<select id="getSong" parameterType="Integer" resultType="Song" resultMap="songResultMap">
-		<![CDATA[ SELECT * FROM songs WHERE song_id=#{id} ]]>
+	
+	<select id="getSongById" parameterType="Integer" resultType="Song" resultMap="songResultMap">
+		<![CDATA[
+			SELECT song_id, song_name, song_title, song_year, song_url, song_comment, duration, emotion, singer_id FROM songs WHERE song_id=#{id}
+		]]>
 	</select>
 	
 	<select id="getSongs" resultType="Song" resultMap="songResultMap">
-		<![CDATA[ SELECT * FROM songs LIMIT #{0},#{1} ]]>
+		<![CDATA[
+			SELECT song_id, song_name, song_title, song_year, song_url, song_comment, duration, emotion, singer_id FROM songs LIMIT #{0},#{1}
+		]]>
 	</select>
 </mapper>

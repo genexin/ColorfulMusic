@@ -1,7 +1,9 @@
 package cn.edu.xidian.cs.cm.entity;
 
+import cn.edu.xidian.cs.cm.entity.serializer.SingerSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 
 /**
@@ -24,7 +26,8 @@ public class Song implements Serializable {
 	private byte emotion;
 	private String url;
 
-	private Integer singerId;
+	@JsonSerialize(using = SingerSerializer.class)
+	private Singer singer;
 
 	public Integer getId() {
 		return id;
@@ -90,17 +93,17 @@ public class Song implements Serializable {
 		this.url = url;
 	}
 
-	public Integer getSingerId() {
-		return singerId;
+	public Singer getSinger() {
+		return singer;
 	}
 
-	public void setSingerId(Integer singerId) {
-		this.singerId = singerId;
+	public void setSinger(Singer singer) {
+		this.singer = singer;
 	}
 
 	@Override
 	public String toString() {
-		return "Song{" + "id=" + id + ", name=" + name + ", title=" + title + ", year=" + year + ", comment=" + comment + ", duration=" + duration + ", emotion=" + emotion + ", url=" + url + ", singId=" + singerId + '}';
+		return "Song{" + "id=" + id + ", name=" + name + ", title=" + title + ", year=" + year + ", comment=" + comment + ", duration=" + duration + ", emotion=" + emotion + ", url=" + url + ", singer=" + singer + '}';
 	}
 
 }

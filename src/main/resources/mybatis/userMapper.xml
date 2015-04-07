@@ -8,7 +8,7 @@
 		<result property="password" column="password" />
 		<result property="email" column="email" />
 		<!--
-		<collection property="songs" javaType="ArrayList" ofType="Song" resultMap="cn.edu.xidian.cs.cm.mapper.SongMapper.songResultMap" />
+			<collection property="songs" javaType="ArrayList" ofType="Song" resultMap="cn.edu.xidian.cs.cm.mapper.SongMapper.songResultMap" />
 		-->
 	</resultMap>
 	

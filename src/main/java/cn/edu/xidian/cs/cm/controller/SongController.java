@@ -36,8 +36,9 @@ public class SongController {
 
 	@RequestMapping("/{id}")
 	public ResponseEntity<Song> getSong(@PathVariable("id") Integer id) {
-		Song song = songMapper.getSong(id);
+		Song song = songMapper.getSongById(id);
 		if (song != null) {
+			System.out.println(song.getSinger());
 			return new ResponseEntity<>(song, HttpStatus.OK);
 		}
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

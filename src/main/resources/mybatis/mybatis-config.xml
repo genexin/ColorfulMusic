@@ -7,6 +7,7 @@
 		<typeAlias type="cn.edu.xidian.cs.cm.entity.Singer" alias="Singer" />
 	</typeAliases>
 	<mappers>
+		<mapper resource="mybatis/singerMapper.xml" />
 		<mapper resource="mybatis/songMapper.xml" />
 		<mapper resource="mybatis/userMapper.xml" />
 	</mappers>

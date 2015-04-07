@@ -9,8 +9,8 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<bean id="propertyConfigurer"
-	  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-	  p:location="/WEB-INF/jdbc.properties" />
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		  p:location="/WEB-INF/jdbc.properties" />
 
 	<bean id="dataSource"
 		  class="org.springframework.jdbc.datasource.DriverManagerDataSource"
@@ -28,6 +28,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
  
+	<bean id="singerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="cn.edu.xidian.cs.cm.mapper.SingerMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
 	<bean id="songMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="cn.edu.xidian.cs.cm.mapper.SongMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
