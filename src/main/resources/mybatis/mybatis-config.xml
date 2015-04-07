@@ -5,7 +5,6 @@
 		<typeAlias type="cn.edu.xidian.cs.cm.entity.User" alias="User" />
 		<typeAlias type="cn.edu.xidian.cs.cm.entity.Song" alias="Song" />
 		<typeAlias type="cn.edu.xidian.cs.cm.entity.Singer" alias="Singer" />
-		<typeAlias type="cn.edu.xidian.cs.cm.entity.Album" alias="Album" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/songMapper.xml" />

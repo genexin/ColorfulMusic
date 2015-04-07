@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 @Controller
 @RequestMapping("/user")

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 @JsonInclude(Include.NON_NULL)
 public class Song implements Serializable {
@@ -15,6 +15,7 @@ public class Song implements Serializable {
 
 	private Integer id;
 
+	private String name;
 	private String title;
 	private String year;
 	private String comment;
@@ -23,7 +24,6 @@ public class Song implements Serializable {
 	private byte emotion;
 	private String url;
 
-	private Integer albumId;
 	private Integer singerId;
 
 	public Integer getId() {
@@ -32,6 +32,14 @@ public class Song implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {
@@ -82,14 +90,6 @@ public class Song implements Serializable {
 		this.url = url;
 	}
 
-	public Integer getAlbumId() {
-		return albumId;
-	}
-
-	public void setAlbumId(Integer albumId) {
-		this.albumId = albumId;
-	}
-
 	public Integer getSingerId() {
 		return singerId;
 	}
@@ -100,7 +100,7 @@ public class Song implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Song{" + "id=" + id + ", title=" + title + ", emotion=" + emotion + ", url=" + url + '}';
+		return "Song{" + "id=" + id + ", name=" + name + ", title=" + title + ", year=" + year + ", comment=" + comment + ", duration=" + duration + ", emotion=" + emotion + ", url=" + url + ", singId=" + singerId + '}';
 	}
 
 }

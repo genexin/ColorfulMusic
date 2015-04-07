@@ -10,11 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 @Controller
 @RequestMapping("/song")
@@ -44,8 +43,4 @@ public class SongController {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 
-	@RequestMapping("/listen")
-	public ModelAndView listen() {
-		return new ModelAndView("listen", "MusicMap", null);
-	}
 }

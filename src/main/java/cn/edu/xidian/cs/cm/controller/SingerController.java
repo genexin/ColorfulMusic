@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 @Controller
 public class SingerController {

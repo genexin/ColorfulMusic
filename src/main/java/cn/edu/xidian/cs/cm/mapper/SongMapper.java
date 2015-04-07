@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 public interface SongMapper {
 

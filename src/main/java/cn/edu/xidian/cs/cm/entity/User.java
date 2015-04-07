@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {

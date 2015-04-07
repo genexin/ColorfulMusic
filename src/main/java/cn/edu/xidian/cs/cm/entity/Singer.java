@@ -1,20 +1,21 @@
 package cn.edu.xidian.cs.cm.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
- * @author MiZhou
+ * @author Mi Zhou
  */
+@JsonInclude(Include.NON_NULL)
 public class Singer implements Serializable {
 
 	private static final long serialVersionUID = 2015_03L;
 
 	private Integer id;
 	private String name;
-	private List<Album> albums;
-	private List<Song> songs;
+	private String comment;
 
 	public Integer getId() {
 		return id;
@@ -32,25 +33,17 @@ public class Singer implements Serializable {
 		this.name = name;
 	}
 
-	public List<Album> getAlbums() {
-		return albums;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setAlbums(List<Album> albums) {
-		this.albums = albums;
-	}
-
-	public List<Song> getSongs() {
-		return songs;
-	}
-
-	public void setSongs(List<Song> songs) {
-		this.songs = songs;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	@Override
 	public String toString() {
-		return "Singer{" + "id=" + id + ", name=" + name + '}';
+		return "Singer{" + "id=" + id + ", name=" + name + ", comment=" + comment + '}';
 	}
 
 }
